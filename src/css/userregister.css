@@ -1,0 +1,81 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+.main-container {
+    height: 100%;
+}
+  
+.left-container {
+    background-color: #431c76;
+    height: 100vh;
+}
+.registermain {
+    width: 75%;
+  }
+  
+.maintextr{
+    text-align: center;
+    font-size: 4.5vh;
+    font-weight: 700;
+    color: #431c76;
+}   
+.childtext{
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+    color: #080942;
+}
+.maintextp{
+    margin: 3vh;
+    
+}
+.rowi{
+    font-size: 2.5vh;
+    margin-top: 2vh;
+    font-weight: 600;
+    color: #080942;
+}
+.form-control {
+    border: 1px solid #431c76; /* Border color */
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+  }
+  .btn-register{
+        margin-top: 3vh;
+        background-color: #080942;
+        border: none;
+        border-radius: 10px;
+        padding: 2vh;
+        color: white;
+  }
+  .btn-register:hover{
+    margin-top: 3vh;
+    background-color: white;
+    border: 2px solid #080942;
+    color: #080942;
+    border-radius: 10px;
+    padding: 2vh;
+  }
+  .loginmain{
+    width: 75%;
+    margin-top: 20vh;
+    
+  }
+  .childtextl{
+    margin-bottom: 3vh;
+  }
+  .maintextrl{
+    margin-bottom: 3vh;
+  }
+  .forml{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    padding: 3vh;
+  }
+  .btnl{
+    margin-top: 4vh;
+  }

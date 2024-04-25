@@ -1,0 +1,102 @@
+
+.mainhomepage {
+    overflow-x: hidden; /* Disable horizontal scrolling */
+    overflow-y: hidden; /* Disable vertical scrolling */
+  }
+.header{
+    width: 100vw;
+    font-size: larger;
+    padding: 2vh;
+}
+.navbar{
+
+    display: flex;
+    justify-content: space-between;
+}
+.links{
+    display: flex;
+    justify-content: space-between;
+}
+.link{
+    
+    margin-right: 3vw;
+    font-weight: 700;
+}
+/* home.css */
+.login {
+    background-color: #221C69;
+    color: white;
+    border-radius: 5px;
+    padding: 20 10px; /* Apply padding to both left and right sides */
+}
+
+.logoname{
+    font-size: larger;
+    font-weight: 900;
+    color: #221C69;
+}   
+.main-body {
+   display: flex;
+   align-items: center;
+   height: 70vh;
+   width: 100%;
+}
+  .col-md-8 img {
+    width: 100%; /* Ensure the image width takes up the entire container */
+    height: 100%; /* Set the height to 100% to maintain aspect ratio */
+    object-fit: cover; /* Cover the entire container with the image */
+  }
+.bodytext{
+    font-size: 25px;
+    color: #663B94;
+    margin-bottom: 4vh;
+}
+.bodytext2{
+    font-size: 10vh;
+    font-weight: 900;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    color: #431C76;
+
+}
+.bodydescription{
+    font-size: 20px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+.btn1{
+    padding: 3%;
+    background-color: #221C69;
+    color: white;
+    margin-right: 3vh;
+    margin-top: 3vh;
+    
+}
+.btn1:hover{
+    padding: 3%;
+    border: 2px solid #221C69;
+    color: #221C69;
+    margin-right: 3vh;
+}
+
+.btn2{
+    padding: 3%;
+    border: 2px solid #221C69;
+    color:#431C76;
+    margin-right: 3vh;
+    margin-top: 3vh;
+}
+.btn2:hover{
+    padding: 3%;
+    background-color: #221C69;
+    color: white;
+    margin-right: 3vh;
+    
+}
+.navbar-brand img {
+    margin-right: 10px; /* Add margin to the logo image for better spacing */
+  }
+
+  .login:hover{
+    color: white;
+  }

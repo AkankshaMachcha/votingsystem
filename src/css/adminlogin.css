@@ -1,0 +1,48 @@
+.maincontaineral {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #431c76;
+    height: 100vh;
+}
+
+.loginmaincontainer {
+    background-color: white;
+    border-radius: 20px;
+    width: 50%;
+    padding: 5vh;
+    height: 50%;
+    color: #431c76; /* Set text color to white */
+}
+
+.loginmaincontainer h2 {
+    color: #431c76; /* Set heading color to white */
+    text-align: center;
+    font-size: 4vh;
+
+}
+
+.loginmaincontainer .form-group label {
+    color: #431c76; /* Set form label color to white */
+    margin-top: 3vh;
+}
+
+.loginmaincontainer .form-control {
+    color: #431c76; /* Set form input text color to white */
+    background-color: white; /* Set form input background color */
+    border: 1px solid #431c76; /* Set form input border color */
+    margin: 1vh;
+}
+
+.loginmaincontainer .btn-primary {
+    margin-top: 3vh;
+    background-color: #431c76; /* Set button background color to white */
+    color: white; /* Set button text color */
+    border: none; /* Remove button border */
+}
+
+.loginmaincontainer .btn-primary:hover {
+    background-color: white; /* Change button background color on hover */
+    color: #431c76; /* Change button text color on hover */
+    border: 2px solid #431c76;
+}

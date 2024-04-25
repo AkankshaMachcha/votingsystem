@@ -1,0 +1,26 @@
+.bold-text {
+    font-weight: bold;
+    font-size: 4vh; /* Adjust font size as needed */
+    margin-bottom: 3vh;
+  }
+  
+  .description-text {
+    /* Add styles for description text */
+    font-size: 2.5vh;
+    margin-bottom: 3vh;
+  }
+  
+  .email-text {
+    font-size: 2.5vh;
+  }
+  .cardm{
+    height: 40vh;
+    padding: 3vh;
+    margin: 3vh;
+  }
+  .formcandidateadd{
+    width: 70%;
+    border: 1px solid grey;
+    border-radius: 20px;
+    padding: 4vh;
+  }
