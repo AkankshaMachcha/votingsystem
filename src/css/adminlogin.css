@@ -46,3 +46,39 @@
     color: #431c76; /* Change button text color on hover */
     border: 2px solid #431c76;
 }
+/* Styles for mobile phones */
+@media (max-width: 576px) {
+    .loginmaincontainer {
+      width: 90%; /* Adjust width for smaller screens */
+      padding: 4vh; /* Adjust padding for smaller screens */
+    }
+  
+    .loginmaincontainer h2 {
+      font-size: 3.5vh; /* Adjust heading font size for smaller screens */
+    }
+  }
+  
+  /* Styles for tablets */
+  @media (min-width: 577px) and (max-width: 1024px) {
+    .loginmaincontainer {
+      width: 70%; /* Adjust width for tablets */
+      padding: 5vh; /* Adjust padding for tablets */
+    }
+  
+    .loginmaincontainer h2 {
+      font-size: 4vh; /* Adjust heading font size for tablets */
+    }
+  }
+  
+  /* Styles for laptops */
+  @media (min-width: 1025px) {
+    .loginmaincontainer {
+      width: 50%; /* Adjust width for laptops */
+      padding: 6vh; /* Adjust padding for laptops */
+    }
+  
+    .loginmaincontainer h2 {
+      font-size: 4.5vh; /* Adjust heading font size for laptops */
+    }
+  }
+  

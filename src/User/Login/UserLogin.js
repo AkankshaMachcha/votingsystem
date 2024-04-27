@@ -60,21 +60,11 @@ const UserLogin = () => {
   };
 
   return (
-    //   <div className="container mt-5">
-    //   <Toaster />
-    //   <h2>User Login</h2>
-    //   <Form>
 
-    //     </Form.Group>
-
-    //       Login
-    //     </Button>
-    //   </Form>
-    // </div>
     <div className='container-fluid main-container'>
       <div className='row'>
 
-        <div className='col-7'>
+        <div className='col-md-7 col-sm-12'>
         <FontAwesomeIcon icon={faArrowLeft} onClick={() => navigate('/')} className="back-icon mt-3" />
           <div className="container loginmain">
           
@@ -112,7 +102,7 @@ const UserLogin = () => {
             </Form>
           </div>
         </div>
-        <div className='col-5 left-container d-flex flex-column justify-content-center align-items-center p-4' style={{ color: 'white', fontSize: '1.2rem' }}>
+        <div className='col-md-5 col-sm-12 left-container d-flex flex-column justify-content-center align-items-center p-4' style={{ color: 'white', fontSize: '1.2rem' }}>
           <ToastContainer />
           <p style={{ fontSize: '4vh', fontWeight: '800', }}>Dont have an Account?</p>
           <p style={{ fontSize: '20px', padding: '4vh' }}>Unlock more features by signing up for an account. Get access to exclusive features as a registered voter</p>

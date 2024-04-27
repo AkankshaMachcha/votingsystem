@@ -68,7 +68,8 @@ const Profile = () => {
                 <ToastContainer />
                 <div>
                     <h2>Profile</h2>
-                    <Form onSubmit={handleSubmit}  className='container w-50'>
+                    <Form onSubmit={handleSubmit} className='container-md container-lg container-sm'>
+
                         <div className='rowi'>
                         <Form.Group controlId="formFirstName">
                             <Form.Label>First Name</Form.Label>

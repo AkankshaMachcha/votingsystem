@@ -15,6 +15,7 @@ import SideNav from './Admin/Dashboard/SideNav';
 import SideNavUser from './User/Dashboard/SideNavUser';
 import Profile from './User/Dashboard/Profile';
 import WatchResults from './User/Dashboard/WatchResults';
+import {app, auth} from '../src/firebase/firebase'; // Import the Firebase configuration file
 
 function App() {
   return (

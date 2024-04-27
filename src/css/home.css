@@ -100,3 +100,41 @@
   .login:hover{
     color: white;
   }
+
+  /* Add responsive styles for smaller devices */
+@media only screen and (max-width: 768px) {
+    .navbar {
+      flex-direction: column; /* Change flex direction to column for smaller screens */
+      align-items: center; /* Align items to center */
+    }
+    .links {
+      flex-direction: column; /* Change flex direction to column for smaller screens */
+      align-items: center; /* Align items to center */
+    }
+    .link {
+      margin: 1vh 0; /* Reduce margin for smaller screens */
+    }
+    .header {
+      padding: 1vh; /* Reduce padding for smaller screens */
+    }
+  }
+  
+  /* Add responsive styles for larger devices */
+  @media only screen and (min-width: 1200px) {
+    .navbar {
+      justify-content: space-between; /* Adjust layout for larger screens */
+    }
+    .links {
+      flex-direction: row; /* Change flex direction to row for larger screens */
+      align-items: center; /* Align items to center */
+    }
+    .link {
+      margin: 0 1vw; /* Adjust margin for larger screens */
+    }
+    .header {
+      padding: 2vh; /* Adjust padding for larger screens */
+    }
+  }
+  
+  /* Additional responsive styles can be added for other screen sizes if necessary */
+  

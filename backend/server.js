@@ -1,6 +1,8 @@
 const express = require('express');
 const Web3 = require('web3');
 const cors = require('cors');
+const axios = require('axios');
+const { loadImage, createCanvas } = require('canvas');
 const ElectionFact = require('../build/contracts/ElectionFact.json');
 const Election = require('../build/contracts/Election.json');
 
@@ -109,7 +111,7 @@ app.get('/winner', async (req, res) => {
 });
 
 
-// Fetch all candidates endpoint
+
 app.get('/candidates', async (req, res) => {
     try {
         // Implement logic to fetch all candidate details
@@ -126,6 +128,7 @@ app.get('/candidates', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch candidates' });
     }
 });
+
 
 
 // Fetch Election Results endpoint

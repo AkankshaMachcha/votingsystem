@@ -98,24 +98,20 @@ const DeployVotesContainer = () => {
         <div className='container'>
           <div className='d-flex justify-content-between'>
             <h2 style={{ fontSize: '30px', fontWeight: '600', color: '#431C76', padding: '4vh' }}>Results</h2>
-            
           </div>
           <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#431C76', padding: '4vh' }}>Winner Details:</h3>
-          <Card style={{ width: '50%', marginLeft: '5vh', marginTop: '2vh', padding: '2vh', backgroundColor: '#f8f9fa', border: '1px solid #ced4da', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
+          <Card style={{ width: '100%', padding: '2vh', backgroundColor: '#f8f9fa', border: '1px solid #ced4da', borderRadius: '8px', boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)' }}>
             <ListGroup variant="flush">
               <ListGroup.Item style={{ fontWeight: 'bold', borderBottom: '1px solid #ced4da', paddingBottom: '0.5rem' }}>Name: <b>{winner[0]}</b></ListGroup.Item>
               <ListGroup.Item style={{ borderBottom: '1px solid #ced4da', paddingBottom: '0.5rem' }}>Description: {winner[1]}</ListGroup.Item>
               <ListGroup.Item style={{ borderBottom: '1px solid #ced4da', paddingBottom: '0.5rem' }}>Email: {winner[4]}</ListGroup.Item>
             </ListGroup>
-           
           </Card>
           <button className='btn btn-register m-3' style={{border:'1px solid #ced4da'}} onClick={handleElectionClose} disabled={closed}>Close Election</button>
-
-
           <p style={{ fontSize: '20px', color: '#431C76', marginTop: '4vh' }}>Candidates and their Vote Counts:</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className='d-flex flex-wrap justify-content-center'>
             {candidates.map((candidate, index) => (
-              <Card key={index} style={{ width: '18rem', marginTop: '20px', marginRight: '20px' }}>
+              <Card key={index} style={{ width: '18rem', margin: '20px', flex: '1 0 300px' }}>
                 <Card.Body>
                   <Card.Title>{candidate[0]}</Card.Title>
                   <Card.Text>Vote Count: {candidate[3]}</Card.Text>
@@ -124,9 +120,7 @@ const DeployVotesContainer = () => {
             ))}
           </div>
         </div>
-        <div>
-
-        </div>
+        <div></div>
       </Box>
     </Box>
   );

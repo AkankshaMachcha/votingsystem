@@ -18,7 +18,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
 }));
 
-
 const AddElectionContainer = () => {
     const [electionName, setElectionName] = useState('');
     const [electionDescription, setElectionDescription] = useState('');
@@ -43,7 +42,6 @@ const AddElectionContainer = () => {
         fetchAdminEmail();
     }, []);
 
-    const baseURL = 'http://192.168.43.91:3001/election';
     const handleAddElection = async () => {
         if (!adminEmail) {
             toast.error('Admin email not found. Please try again later.');
@@ -80,18 +78,14 @@ const AddElectionContainer = () => {
     };
 
     return (
-
-
         <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
             <SideNav />
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-
-                <div>
+                <div className='container'>
                     <h2 style={{ fontSize: '30px', fontWeight: '600', color: '#431C76', padding: '4vh' }}>Add Election</h2>
-                    <Form  className='mx-auto formcandidateadd'>
-                        <div className='row rowi'>
-                        <Form.Group controlId="electionName ">
+                    <Form className='mx-auto formcandidateadd'>
+                        <Form.Group controlId="electionName" className="mb-3">
                             <Form.Label>Election Name</Form.Label>
                             <Form.Control
                                 type="text"
@@ -100,9 +94,7 @@ const AddElectionContainer = () => {
                                 onChange={e => setElectionName(e.target.value)}
                             />
                         </Form.Group>
-                        </div>
-                        <div className='rowi'>
-                        <Form.Group controlId="electionDescription">
+                        <Form.Group controlId="electionDescription" className="mb-3">
                             <Form.Label>Election Description</Form.Label>
                             <Form.Control
                                 as="textarea"
@@ -112,8 +104,6 @@ const AddElectionContainer = () => {
                                 onChange={e => setElectionDescription(e.target.value)}
                             />
                         </Form.Group>
-                        </div>
-                      
                         <Button variant="primary" className='btn btn-register' onClick={handleAddElection}>
                             Add Election
                         </Button>

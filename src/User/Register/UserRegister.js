@@ -101,7 +101,7 @@ const UserRegister = () => {
     <div className='container-fluid main-container'>
       <div className='row'>
         
-        <div className='col-4 left-container d-flex flex-column justify-content-center align-items-center p-4' style={{ color: 'white', fontSize: '1.2rem' }}>
+        <div className='col-md-4 col-sm-12 left-container d-flex flex-column justify-content-center align-items-center p-4' style={{ color: 'white', fontSize: '1.2rem' }}>
        
           <p style={{ fontSize: '4vh', fontWeight: '800', }}>Already have an Account?</p>
           <p style={{ fontSize: '20px', padding: '4vh' }}>Explore more features by signing up for an account. Unlock exclusive features by logging in as a voter.</p>
@@ -110,7 +110,7 @@ const UserRegister = () => {
 
 
 
-        <div className='col-8'>
+        <div className='col-md-8 col-sm-8'>
           <div className="container mt-5 registermain">
             <h2 className='maintextr'>Registration</h2>
             <div className='maintextp'>
@@ -120,7 +120,7 @@ const UserRegister = () => {
             <ToastContainer />
             <Form>
               <div className='row rowi'>
-                <div className='col-4'>
+                <div className='col-md-4 col-sm-8'>
                   <Form.Group controlId="firstName">
                     <Form.Label>First Name</Form.Label>
                     <Form.Control
@@ -131,7 +131,7 @@ const UserRegister = () => {
                     />
                   </Form.Group>
                 </div>
-                <div className='col-4'>
+                <div className='col-md-4 col-sm-8'>
                   <Form.Group controlId="lastName">
                     <Form.Label>Last Name</Form.Label>
                     <Form.Control
@@ -142,7 +142,7 @@ const UserRegister = () => {
                     />
                   </Form.Group>
                 </div>
-                <div className='col-4'>
+                <div className='col-md-4 col-sm-8'>
                   <Form.Group controlId="username">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
@@ -180,7 +180,7 @@ const UserRegister = () => {
               </div>
 
               <div className='row rowi'>
-                <div className='col-6'>
+                <div className='col-md-6 col-sm-8'>
                   <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
@@ -191,7 +191,7 @@ const UserRegister = () => {
                     />
                   </Form.Group>
                 </div>
-                <div className='col-6'>
+                <div className='col-md-6 col-sm-8'>
                   <Form.Group controlId="confirmPassword">
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
