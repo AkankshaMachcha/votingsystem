@@ -11,6 +11,8 @@ import { confirmAlert } from 'react-confirm-alert'; // Import confirmation dialo
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import confirmation dialog styles
 import { toast } from 'react-toastify'; // Import toast notification
 import 'react-toastify/dist/ReactToastify.css'; // Import toast notification styles
+import { BarChart, PieChart } from '../../User/Dashboard/ResultsCharts';
+import { Container, Row, Col } from 'react-bootstrap';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -64,7 +66,7 @@ const DeployVotesContainer = () => {
           onClick: () => {
             // Create a reference to the 'election' table in your Firebase database
             const electionRef = ref(database, 'election');
-  
+
             // Set the 'closed' variable to 'yes'
             set(electionRef, { closed: 'yes' })
               .then(() => {
@@ -83,7 +85,7 @@ const DeployVotesContainer = () => {
         },
         {
           label: 'No',
-          onClick: () => {}
+          onClick: () => { }
         }
       ]
     });
@@ -107,7 +109,7 @@ const DeployVotesContainer = () => {
               <ListGroup.Item style={{ borderBottom: '1px solid #ced4da', paddingBottom: '0.5rem' }}>Email: {winner[4]}</ListGroup.Item>
             </ListGroup>
           </Card>
-          <button className='btn btn-register m-3' style={{border:'1px solid #ced4da'}} onClick={handleElectionClose} disabled={closed}>Close Election</button>
+          <button className='btn btn-register m-3' style={{ border: '1px solid #ced4da' }} onClick={handleElectionClose} disabled={closed}>Close Election</button>
           <p style={{ fontSize: '20px', color: '#431C76', marginTop: '4vh' }}>Candidates and their Vote Counts:</p>
           <div className='d-flex flex-wrap justify-content-center'>
             {candidates.map((candidate, index) => (
@@ -120,7 +122,28 @@ const DeployVotesContainer = () => {
             ))}
           </div>
         </div>
-        <div></div>
+        <div className='container'>
+          <Container>
+            <Row>
+              <Col>
+                {closed && candidates && candidates.length > 0 && (
+                  <>
+                    <h3 className='mt-4'>Results Chart</h3>
+                    <div className='row'>
+                      <div className='col-md-6 col-sm-12'>
+                        <BarChart candidates={candidates} /> {/* Pass candidates array */}
+                      </div>
+                      <div className='col-md-6 col-sm-12'>
+                        <PieChart candidates={candidates} /> {/* Pass candidates array */}
+                      </div>
+                    </div>
+
+                  </>
+                )}
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </Box>
     </Box>
   );

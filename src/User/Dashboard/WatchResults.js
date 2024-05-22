@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,9 +9,9 @@ import { Card, Button } from 'react-bootstrap';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import SideNavUser from './SideNavUser';
-import '../../css/listcandidatescontainer.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
+import { BarChart, PieChart } from './ResultsCharts'; // Importing the charts
 
 const drawerWidth = 240;
 
@@ -28,6 +28,7 @@ const WatchResults = () => {
     const { userId } = useParams();
     const [winner, setWinner] = useState({});
     const [closed, setClosed] = useState(false);
+    const [candidates, setCandidates] = useState([]);
 
     useEffect(() => {
         // Fetch election result
@@ -35,12 +36,16 @@ const WatchResults = () => {
             const email = 'example@example.com'; // Replace with the email of the user
             try {
                 const response = await axios.get(`http://192.168.43.91:3001/election/result/${email}`);
-                const { winner } = response.data;
+                const { winner, candidates } = response.data;
 
-                if (winner && winner.length > 0) {
+                if (winner && Array.isArray(winner) && winner.length > 0) {
                     setWinner(winner[0]); // Winner is an array, so get the first element
                 } else {
                     console.log('No winner found in the response');
+                }
+
+                if (candidates && Array.isArray(candidates)) {
+                    setCandidates(candidates);
                 }
             } catch (error) {
                 console.error('Failed to fetch election result:', error);
@@ -79,7 +84,6 @@ const WatchResults = () => {
                                                 <ListGroup.Item style={{ borderBottom: '1px solid #ced4da', paddingBottom: '0.5rem' }}>Description: {winner[1]}</ListGroup.Item>
                                                 <ListGroup.Item style={{ borderBottom: '1px solid #ced4da', paddingBottom: '0.5rem' }}>Email: {winner[4]}</ListGroup.Item>
                                             </ListGroup>
-
                                         </Card>
                                     </div>
                                 ) : (
@@ -87,6 +91,27 @@ const WatchResults = () => {
                                 )
                             ) : (
                                 <p>Election results will be available after the election is closed.</p>
+                            )}
+                        </Col>
+                    </Row>
+                </Container>
+                {/* Render charts */}
+                <Container>
+                    <Row>
+                        <Col>
+                            {closed && candidates && candidates.length > 0 && (
+                                <>
+                                    <h3 className='mt-4'>Results Chart</h3>
+                                    <div className='row'>
+                                        <div className='col-md-6 col-sm-12'>
+                                          <BarChart candidates={candidates} /> {/* Pass candidates array */}
+                                        </div>
+                                        <div className='col-md-6 col-sm-12'>
+                                            <PieChart candidates={candidates} /> {/* Pass candidates array */}
+                                        </div>
+                                    </div>
+                                   
+                                </>
                             )}
                         </Col>
                     </Row>

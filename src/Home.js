@@ -34,8 +34,7 @@ const Home = () => {
               <span className='logoname'> VoteChain</span>
             </Navbar.Brand>
             <Nav className="ms-auto links">
-              <Nav.Link href="#" className='link'>How to Vote</Nav.Link>
-              <Nav.Link href="#" className='link'>About Us</Nav.Link>
+            
               <Nav.Link href="#" className='link login' onClick={login}>Login</Nav.Link>
             </Nav>
           </Container>

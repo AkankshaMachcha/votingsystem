@@ -16,6 +16,7 @@ import SideNavUser from './User/Dashboard/SideNavUser';
 import Profile from './User/Dashboard/Profile';
 import WatchResults from './User/Dashboard/WatchResults';
 import {app, auth} from '../src/firebase/firebase'; // Import the Firebase configuration file
+import CreateDatabase from './Admin/Dashboard/CreateDatabase';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/vote/:userId" element={<Vote />} />
         <Route path="/results/:userId" element={<WatchResults />} />
         <Route path="/Profile/:userId" element={<Profile />} />
+        <Route path="/createdb" element={<CreateDatabase />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Router>

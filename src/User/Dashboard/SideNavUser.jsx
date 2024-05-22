@@ -16,15 +16,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { withRouter } from '../../Admin/Dashboard/withRouter';
+import { useNavigate } from 'react-router-dom';
 import { RiLogoutBoxLine } from "react-icons/ri";
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { LuUserPlus } from "react-icons/lu";
 import { MdHowToVote } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
 import { GrTrophy } from "react-icons/gr";
-import { database ,ref ,get} from '../../firebase/firebase';
+import { database, ref, get } from '../../firebase/firebase';
+import { useMediaQuery } from '@mui/material';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -34,7 +35,6 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
-
 });
 
 const closedMixin = (theme) => ({
@@ -45,7 +45,7 @@ const closedMixin = (theme) => ({
   overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up('sm')]: {
-    width: `calc(${theme.spacing(12)} + 1px)`,
+    width: `calc(${theme.spacing(8)} + 1px)`,
   },
 });
 
@@ -54,7 +54,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -92,23 +91,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
-
 const SideNavUser = (props) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const userId = props.userId;
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
-  const [personalDetailsOpen, setPersonalDetailsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  
   useEffect(() => {
-    // Fetch user data from Firebase Realtime Database based on user ID
     const fetchData = async () => {
       try {
-        const userRef = ref(database, `voters/${userId}`);;
+        const userRef = ref(database, `voters/${userId}`);
         const snapshot = await get(userRef);
         const userData = snapshot.val();
         if (userData && userData.username) {
@@ -121,6 +115,7 @@ const SideNavUser = (props) => {
 
     fetchData();
   }, [userId]);
+
 
 
 
@@ -140,9 +135,79 @@ const SideNavUser = (props) => {
     navigate('/');
   };
 
+  const drawer = (
+    <div>
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+      <List>
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate(`/vote/${userId}`) }}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? 'initial' : 'center',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : 'auto',
+                justifyContent: 'center',
+              }}
+            >
+              <MdHowToVote style={{ height: '3rem', width: '2rem' }} />
+            </ListItemIcon>
+            <ListItemText primary={"Cast Vote"} sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate(`/results/${userId}`) }}>
+          <ListItemButton
+            sx={{
+              minHeight: 48,
+              justifyContent: open ? 'initial' : 'center',
+              px: 2.5,
+            }}
+          >
+            <ListItemIcon
+              sx={{
+                minWidth: 0,
+                mr: open ? 3 : 'auto',
+                justifyContent: 'center',
+              }}
+            >
+              <GrTrophy style={{ height: '3rem', width: '2rem' }} />
+            </ListItemIcon>
+            <ListItemText primary={"Results"} sx={{ opacity: open ? 1 : 0 }} />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem style={{ background: '' }} onClick={() => { navigate(`/Profile/${userId}`) }}>
+          <ListItemIcon
+            sx={{
+              minWidth: 0,
+              mr: open ? 3 : 'auto',
+              justifyContent: 'center',
+            }}
+          >
+            <FaUserAlt style={{ height: '3rem', width: '2rem' }} />
+          </ListItemIcon>
+          <ListItemText primary={'Profile'} sx={{ opacity: open ? 1 : 0 }}></ListItemText>
+        </ListItem>
+      </List>
+    </div>
+  );
+
   return (
     <Box sx={{ display: 'flex' }}>
-
       <CssBaseline />
       <AppBar position="fixed" open={open} sx={{ background: '#431C76' }}>
         <Toolbar>
@@ -159,95 +224,40 @@ const SideNavUser = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }} >
-
-            <div>
-              Welcome {username}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              Welcome <span style={{ marginLeft: '0.5rem', maxWidth: '10rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{username}</span>
             </div>
-            <div>
-              <div style={{ cursor: 'pointer' }} onClick={handleLogout}>
-                <RiLogoutBoxLine />
-                Logout
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={handleLogout}>
+              <RiLogoutBoxLine style={{ marginRight: '0.5rem' }} />
+              Logout
             </div>
-
           </Typography>
         </Toolbar>
       </AppBar>
-
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate(`/vote/${userId}`) }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <MdHowToVote  style={{ height: '3rem', width: '2rem' }} />
-              </ListItemIcon>
-              <ListItemText primary={"Cast Vote"} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-        <Divider />
-
-        <List>
-          <ListItem disablePadding sx={{ display: 'block' }} onClick={() => { navigate(`/results/${userId}`) }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
-                }}
-              >
-                <GrTrophy  style={{ height: '3rem', width: '2rem' }} />
-              </ListItemIcon>
-              <ListItemText primary={"Results"} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-        <Divider />
-
-        <List>
-          <ListItem style={{ background: '' }} onClick={() => { navigate(`/Profile/${userId}`) }}>
-            <ListItemIcon
-              sx={{
-                minWidth: 0,
-                mr: open ? 3 : 'auto',
-                justifyContent: 'center',
-              }}
-            >
-              <FaUserAlt style={{ height: '3rem', width: '2rem' }} />
-            </ListItemIcon>
-            <ListItemText primary={'Profile'} sx={{ opacity: open ? 1 : 0 }}></ListItemText>
-          </ListItem>
-        </List>
-
-      </Drawer>
-
+      {isMobile ? (
+        <MuiDrawer
+          variant="temporary"
+          open={open}
+          onClose={handleDrawerClose}
+          ModalProps={{
+            keepMounted: true,
+          }}
+          sx={{
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </MuiDrawer>
+      ) : (
+        <Drawer variant="permanent" open={open}>
+          {drawer}
+        </Drawer>
+      )}
     </Box>
   );
 }
 
-export default withRouter(SideNavUser);
+export default SideNavUser;
